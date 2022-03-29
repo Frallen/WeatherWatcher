@@ -4,9 +4,13 @@
     .local-info
       h3.local-date Today is {{date}}
       h4.local-state City {{MainData.name}}
+      .local-main(v-for="item in MainData.weather" )
+        .local-main__title {{item.main}}
+        .local-main__descr {{item.description}}
       .local-stats
-        .local-stats__item
-
+        .local-stats__item(v-for="(item,index) in MainData.main")
+          .local-stats__item__head {{index}}
+          .local-stats__item__body {{item}} °C
 
     .local-map
   .local-forecast
@@ -73,12 +77,52 @@ export default {
 </script>
 
 <style lang="less">
+@import "../styles/_mixin";
+@import "../styles/_variables";
 .local {
   margin: 6em auto;
   &-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  &-main {
+    background: #fff;
+    padding: 38px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 7px 3px #eee;
+    margin-bottom: 20px;
+    &__title {
+    }
+    &__descr {
+    }
+  }
+  &-stats {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    &__item {
+      width: calc(20% - 10px);
+      background: #fff;
+      padding: 12px 20px;
+      border-radius: 20px;
+      box-shadow: 0 2px 7px 3px #eee;
+      &__head {
+        font-size: 1.2em;
+        color: #aeaeae;
+        margin-bottom: 5px;
+      }
+      &__body {
+        color: @orange;
+      }
+    }
+  }
+  &__map {
+    flex-basis: 50%;
   }
 }
 </style>
