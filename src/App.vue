@@ -10,7 +10,7 @@
     li.header-menu__item
       router-link.header-link(to="/contact") Contact
 .container
-router-view
+  router-view
 </template>
 
 <script>
